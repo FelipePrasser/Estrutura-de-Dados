@@ -65,4 +65,29 @@ public class Lista{
         }
         return no;
     }
+
+    public void retira(int v){
+        NoLista anterior=null;
+        NoLista elemento=primeiro;
+        while (elemento!=null && elemento.getInfo()!=v) {
+            anterior=elemento;
+            elemento=elemento.getProx();
+        }
+        if (elemento==null){
+            return;
+        }
+        if (anterior==null){
+            this.primeiro=elemento.getProx();
+        }else{
+            anterior.setProx(elemento.getProx());
+        }
+    }
+
+    public void libera(){
+        primeiro=null;
+    }
+
+    public void insereFim(int v){
+        ultimo().setProx(new NoLista(v)); 
+    }
 }
