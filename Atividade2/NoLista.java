@@ -1,7 +1,9 @@
+import java.util.IdentityHashMap;
+
 public class NoLista {
     private int info;
     private NoLista prox;
-
+    
     public NoLista(int info) {
         this.info = info;
     }
@@ -21,10 +23,5 @@ public class NoLista {
     }
     public void setProx(NoLista prox) {
         this.prox = prox;
-    }
-
-    @Override
-    public String toString() {
-        return "NoLista [info=" + info + ", prox=" + prox + "]";
     }
 }

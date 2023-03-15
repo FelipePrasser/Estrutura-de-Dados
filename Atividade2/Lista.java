@@ -19,12 +19,7 @@ public class Lista{
             noAtual=noAtual.getProx();     
         }
     }
-
-    @Override
-    public String toString() {
-        return "Lista [primeiro=" + primeiro + "]";
-    }
-
+    
     public boolean vazia(){
         if(primeiro==null){
             return true;
@@ -34,8 +29,7 @@ public class Lista{
     }
    
     public NoLista busca(int v){
-        NoLista no=new NoLista(v);
-        no=primeiro;
+        NoLista no=primeiro;
         while (no!=null) {
             if (no.getInfo()==v){
                 break;
