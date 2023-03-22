@@ -1,11 +1,9 @@
-import java.util.IdentityHashMap;
-
 public class NoLista {
     private int info;
     private NoLista prox;
     
     public NoLista(int info) {
-        this.info = info;
+        this.isnfo = info;
     }
     public NoLista(int info, NoLista prox) {
         this.info = info;
