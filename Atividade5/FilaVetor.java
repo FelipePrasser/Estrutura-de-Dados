@@ -11,19 +11,41 @@ public class FilaVetor implements Fila{
         this.tam = tam;
     }
 
-    public void enqueue(int v) throws Exception{
-        int fim;
-        fim=(ini+n)%tam;
-        this.vet[fim]=v;
-        this.n++;
+    public void imprimir(){
+        for (int i = 0; i <tam; i++) {
+            if ((i+1)==tam){
+                System.out.println(vet[i]+";");
+            }else{
+                System.out.println(vet[i]+" ,");
+            }
+        }
+
+    }
+    public void enqueue(int v){
+        if (n==tam){
+            System.out.println("ERRO: A lista está cheia!!!");
+            return;
+        }else{
+            int fim;
+            fim=(ini+n)%tam;
+            this.vet[fim]=v;
+            this.n++;
+        }
+        
     }
 
     public float dequeue(){
-        int v;
-        v=this.vet[ini];
-        ini=(ini+n)%tam;
-        this.n--;
-        return v;
+        if (n==0){
+            System.out.println("ERRO: Fila vazia.");
+            return 0;
+        }else{
+            int v;
+            v=this.vet[ini];
+            ini=(ini+1)%tam;
+            this.n--;
+            return v;
+        }
+        
     }
 
     public boolean isEmpty(){
@@ -50,6 +72,27 @@ public class FilaVetor implements Fila{
         while(iniF2<f2.ini+f2.n){
             f3.enqueue(f2.vet[iniF2%f2.tam]);
             iniF2++;
+        }
+        return f3;
+    }
+
+    public FilaVetor merge(FilaVetor f2){
+        FilaVetor f3=new FilaVetor(tam+f2.tam);
+        int iniF1=ini;
+        int iniF2=f2.ini;
+        while((iniF1<ini+n)&&(iniF2<f2.ini+f2.n)){
+            f3.enqueue(vet[iniF1%tam]);
+            f3.enqueue(f2.vet[iniF2%f2.tam]);
+            iniF1++;
+            iniF2++;
+        }
+        while (iniF2<f2.ini+f2.n){
+            f3.enqueue(f2.vet[iniF2%f2.tam]);
+            iniF2++;
+        }
+        while (iniF1<ini+n){
+            f3.enqueue(vet[iniF1%tam]);
+            iniF1++;
         }
         return f3;
     }
