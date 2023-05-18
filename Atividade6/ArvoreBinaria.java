@@ -46,29 +46,74 @@ public class ArvoreBinaria {
         }
     }
 
-    public int pares(){
-
-        return 0;
-    }
-
-    public int folhas(){
-
-        return 0;
+    public int folhas(NoArvoreBinaria no){
+        if (no==null){
+            return 0;
+        }if (no.getEsq()==null && no.getDir()==null){
+            return 1;
+        }else{
+            return folhas(no.getEsq())+folhas(no.getDir());
+        }
     }
 
     public String imprimePre(){
         return toString();
     }
 
-    public String imprimeSim(){
-        if()
+    public String imprimeSim(NoArvoreBinaria no){
+        String string=new String("");
+        if (no==null)
+            return string="";
+        string=string+'<';
+        if(no!=null){
+            string=string+imprimeSim(no.getEsq());
+            string=string+no.getInfo();
+            string=string+imprimeSim(no.getDir());
+        }
+        string=string+'>';
+        return string;
     }
 
-    public String imprimePos(){
-
+    public String imprimePos(NoArvoreBinaria no){
+        String string=new String("");
+        string=string+'<';
+        if(no!=null){
+            string=string+imprimePos(no.getEsq());
+            string=string+imprimePos(no.getDir());
+            string=string+no.getInfo();
+        }
+        string=string+'>';
+        return string;
     }
 
-     public int numNos(){
-        
-     }
+    public NoArvoreBinaria getRaiz() {
+        return raiz;
+    }
+
+    public void setRaiz(NoArvoreBinaria raiz) {
+        this.raiz = raiz;
+    }
+
+    public int numNos(NoArvoreBinaria no){
+        if(no == null){
+            return 0;
+        }
+        else {
+            return( 1 + numNos(no.getEsq()) + numNos(no.getDir()));
+        }
+    }
+
+    public int altura(NoArvoreBinaria no){
+        if (no==null || (no.getEsq()==null && no.getDir()==null)){
+            return 0;
+        }
+        else{
+            if (altura(no.getEsq())>=altura(no.getDir())){
+                return (1+altura(no.getEsq()));
+            }else{
+                return (1+altura(no.getDir()));
+            }
+        }
+    }
+
 }
