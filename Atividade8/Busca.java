@@ -20,24 +20,22 @@ public class Busca {
         return -1;
     }
 
-    public int buscaBinaria(int[] vetor, int elemento, int ini, int fim){
-        if (ini<fim){
+    public int buscaBinaria(int[] vetor, int ini, int fim, int elemento){
+        if (ini<=fim){
             int meio=ini+(fim-ini)/2;
             if (elemento<vetor[meio]){
-                return buscaBinaria (vetor, elemento, ini, meio);
+                return buscaBinaria (vetor, ini, meio, elemento);
             }
             else{
                 if (elemento>vetor[meio]){
-                    return buscaBinaria(vetor, elemento, meio+1, fim);
+                    return buscaBinaria(vetor, meio+1, fim, elemento);
                 }
                 else{
                     return meio;
                 }
             }
         }
-        else{
-            return -1;
-        }
+        return -1;
     }
     
 }

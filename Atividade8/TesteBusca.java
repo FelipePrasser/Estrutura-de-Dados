@@ -4,16 +4,19 @@ import java.util.Scanner;
 
 public class TesteBusca {
     public static void main(String[] args) {
-        int numExpoente=1, num, elem, numIndex;
-        int [] vetor1, vetor2;
+        int numExpoente=1, elem, numIndex, qtdElemInt=0;
+        int [] vetor1; 
+        int [] vetor2;
         double tempoInicial;
-
+        Double qtdElem;
+        
         Scanner teclado=new Scanner(System.in);
 
         System.out.println("Busca Linear:\n");
         while (numExpoente<=5){
-            Double qtdElem=Math.pow(10, numExpoente);
-            int qtdElemInt=qtdElem.intValue();
+            tempoInicial=System.currentTimeMillis();
+            qtdElem=Math.pow(10, numExpoente);
+            qtdElemInt=qtdElem.intValue();
             
             FuncoesAuxiliares v=new FuncoesAuxiliares();
             vetor1=v.criarVetor(qtdElemInt);
@@ -25,30 +28,37 @@ public class TesteBusca {
             numIndex=busca.buscaLinear(elem);
 
             if (numIndex!=-1){
-                tempoInicial=System.currentTimeMillis();
-                System.out.println("A busca demorou: "+((System.currentTimeMillis()-tempoInicial)/1000d)+"\n");
+                System.out.println("A busca demorou: "+((System.currentTimeMillis()-tempoInicial)/1000d));
             }else{
                 System.out.println("O elemento não existe no vetor.");
             }
             
             numExpoente++;
         }
-        /*
-        int num=10, numIndex;
-        int [] vetor;
         
-        int elem=teclado.nextInt();
-        FuncoesAuxiliares v=new FuncoesAuxiliares();
-
-        vetor=v.criarVetor(num);
-        vetor=v.criarVetorEmbaralhado(vetor);
-        Busca busca=new Busca(vetor);
-        numIndex=busca.buscaLinear(elem);
-        */
+        numExpoente=1;
         
-       // numIndex=busca.buscaBinaria(vetor, elem, vetor[0], vetor[num-1]);
+        System.out.println("Busca Binária:");
+        while (numExpoente<=5) {
+            tempoInicial=System.currentTimeMillis();
+            qtdElem=Math.pow(10, numExpoente);
+            qtdElemInt=qtdElem.intValue();
+            
+            FuncoesAuxiliares v=new FuncoesAuxiliares();
+            vetor2=v.criarVetor(qtdElemInt);
+            vetor2=v.criarVetorEmbaralhado(vetor2);
+            vetor2=v.mergeSort(vetor2, 0, qtdElemInt-1);
+            Busca busca=new Busca(vetor2);
+            elem=teclado.nextInt();
+            numIndex=busca.buscaBinaria(vetor2, 0, qtdElemInt-1, elem);
 
-
+            if (numIndex!=-1){
+                System.out.println("A busca demorou: "+((System.currentTimeMillis()-tempoInicial)/1000d)+"s");
+            }else{
+                System.out.println("O elemento não existe no vetor.");
+            }
+            numExpoente++;
+        }
         teclado.close();
     }
 }
