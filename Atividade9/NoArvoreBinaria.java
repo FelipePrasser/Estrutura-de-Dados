@@ -5,8 +5,10 @@ public class NoArvoreBinaria{
     private NoArvoreBinaria esq;
     private NoArvoreBinaria dir;
     
-    public NoArvoreBinaria(int info) {
-        this.info = info;
+    public NoArvoreBinaria(int valor) {
+        this.info = valor;
+        esq=null;
+        dir=null;
     }
 
     public NoArvoreBinaria(int info, NoArvoreBinaria esq, NoArvoreBinaria dir) {
