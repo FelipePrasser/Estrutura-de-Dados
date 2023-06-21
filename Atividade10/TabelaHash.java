@@ -37,4 +37,29 @@ public class TabelaHash {
         tabela[h].setNome(nome);
         tabela[h].setMediaGeral(mediaGeral);
     }
+
+    public void remove(int k){
+        int h=hash(k);
+        while (tabela[h]!=null){
+            if (tabela[h].getMatricula()==k){
+                tabela[h]=null;
+            }
+            else{
+                h=(h+1)%tabela.length;
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        String str="Tabela Hash:\n";
+        for(int i=0; i<tabela.length; i++){
+            if (tabela[i]!=null){
+                str=str+tabela[i].getMatricula()+";";
+            }
+        }
+        return str;
+    }
+
+    
 }
